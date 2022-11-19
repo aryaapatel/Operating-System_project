@@ -1,0 +1,499 @@
+<html>
+    <head>
+        <title>Disc Scheduling Algorithms</title>
+        <link rel = "icon" href = "image/color-circle.png" type = "image/x-icon">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="DSA_css/compare_D.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        <style>
+            hr { 
+            position: relative; 
+            top: 20px; 
+            border: none; 
+            height: 2px; 
+            background: #bdbdbd; 
+            margin-bottom: 50px; 
+        } canvas{
+                margin-top: 80px;
+                margin-right: 0%;
+                margin-left: 0%;
+                width: 100%!important;
+                height: 450px!important;
+                /*transform: rotate(90deg);*/
+              }
+        </style>
+        
+    </head>
+    <body>
+        
+               
+                <nav class="navbar navbar-expand-lg navbar-light fixed-top py-1" id="mainNav" style="color:black">
+                    <div class="container">
+                        
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarResponsive">
+                            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="DSA_Index.html">Home</a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="DSA_Index.html#portfolio">Algorithms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            
+            <div class="firstt">
+
+                <p style="color: #0c0c0c; text-align: justify; font-size: 20px;">Enter the track numbers upto 200.</p></br>
+                
+                <div >
+                    <label for="frames" style="color: #0e0d0d; font-size: 21px;">Current Track Position :</label>
+                    <div class="wrap-input40">
+                        <input class="input40" type="text" id="frames" placeholder="Enter current track position">
+                        
+                    </div>
+                    <label for="istring" style="color: #0e0d0d; font-size: 21px;">Track Number:</label>
+                    <div class="wrap-input40 mb-5">
+                        <input class="input40" id="inputname" type="text" placeholder="Enter queue contains track number">
+                       
+                    </div>
+                </div>
+
+                <div >
+                    <section class="left">
+                    
+                    <button class="contact100-form-btn submit" id="show" type='button'>
+                        <span>
+                            Show Graph
+                        </span>
+                    </button>
+                </section>
+                </div>
+
+                <div id="chartContainer" style="height: 300px; width: 100%;">
+                </div>
+                <div>
+                    <script>
+                        function graph () {
+
+                            var dummy = document.getElementById('inputname').value.split(" ");
+                            var ctrack = document.getElementById("frames").value;
+
+                            //SSTF
+                            var arr = new Array(dummy.length);
+
+                            for(var i = 0; i < dummy.length; i++)
+                            {
+                                var y = dummy[i];
+                                arr[i] = parseInt(y);
+                            } 
+
+                            //SCAN , C-SCAN , LOOK
+                            var size = dummy.length;
+                            
+                            var arr1 = new Array(size);
+                            for(var j=0; j<size; j++)
+                            {
+                                var z = dummy[j];
+                                arr1[j] = parseInt(z);
+                            } 
+
+                            //FCFS
+                            dummy.unshift(ctrack);
+                       
+                            var seek=0;
+
+                            for(i=1;i<dummy.length;i++)
+                            {
+                                seek=seek+Math.abs(dummy[i]-dummy[i-1]);
+                            }
+                            console.log(seek);
+
+                            //SSTF
+                            console.log(dummy);
+                            console.log(arr);
+                            
+                            var a = parseInt(ctrack);
+                            var f = a;
+
+                            var b = arr;
+                            var c = b;
+
+                            var ans = Array();
+
+                            for(var i=0;i<b.length;i++)
+                            {
+                                var e = c.map(function(v,i) { return Math.abs(v - f); });
+                                var t = c[e.indexOf(Math.min(...e))];
+                                c = c.filter(item => item !== t)
+                                f=t;
+                                ans.push(t);
+                            }
+                            ans.unshift(a);
+                            console.log(ans);
+
+                            var seek1=0;
+
+                            for(i=1;i<ans.length;i++)
+                            {
+                                seek1=seek1+Math.abs(ans[i]-ans[i-1]);
+                            }
+
+                            //SCAN-left
+                            var dir1 = left;
+                            
+                            ctrack = parseInt(ctrack); 
+                            var disk_size = 200;
+
+                            var left=[];
+                            var right=[];
+
+                            left.push(0);
+                            
+                            for (var i = 0; i < size; i++) 
+                            {
+                                if (arr1[i] < ctrack)
+                                    left.push(arr1[i]);
+                                if (arr1[i] > ctrack)
+                                    right.push(arr1[i]);
+                            }
+
+                            left.sort(function(a, b){return a - b});
+                            right.sort(function(a, b){return a - b});
+                            console.log("left->",left);
+                            console.log("right->",right);
+      
+                            var cur_track;
+                            var seek_sequence = Array();
+
+                            for (var i = left.length - 1; i >= 0; i--) 
+                                    {
+                                        cur_track = left[i];
+ 
+                                        // appending current track to seek sequence
+                                        seek_sequence.push(cur_track);
+                                    }
+                            for (var i = 0; i < right.length; i++) 
+                                    {   
+                                        cur_track = right[i];
+            
+                                        // appending current track to seek sequence
+                                        seek_sequence.push(cur_track);
+                                    }
+                            
+                            seek_sequence.unshift(ctrack);
+
+                            var seek2=0;
+
+                            for(i=1;i<seek_sequence.length;i++)
+                            {
+                                seek2=seek2+Math.abs(seek_sequence[i]-seek_sequence[i-1]);
+                            }
+
+
+                            //SCAN-right
+                            var dir2 = right;
+
+                            var left1=[];
+                            var right1=[];
+
+                            right1.push(disk_size-1);
+                            
+                            for (var i = 0; i < size; i++) 
+                            {
+                                if (arr1[i] < ctrack)
+                                    left1.push(arr1[i]);
+                                if (arr1[i] > ctrack)
+                                    right1.push(arr1[i]);
+                            }
+
+                            left1.sort(function(a, b){return a - b});
+                            right1.sort(function(a, b){return a - b});
+                            console.log("left1->",left1);
+                            console.log("right1->",right1);
+      
+                            var cur_track1;
+                            var seek_sequence1 = Array();
+
+                            for (var i = 0; i < right1.length; i++) 
+                                    {   
+                                        cur_track1 = right1[i];
+            
+                                        // appending current track to seek sequence
+                                        seek_sequence1.push(cur_track1);
+                                    }
+                            for (var i = left1.length - 1; i >= 0; i--) 
+                                    {
+                                        cur_track1 = left1[i];
+ 
+                                        // appending current track to seek sequence
+                                        seek_sequence1.push(cur_track1);
+                                    }
+                            
+                            
+                            seek_sequence1.unshift(ctrack);
+
+                            var seek3=0;
+
+                            for(i=1;i<seek_sequence1.length;i++)
+                            {
+                                seek3=seek3+Math.abs(seek_sequence1[i]-seek_sequence1[i-1]);
+                            }
+
+                            //C-SCAN-left
+                            var left2=[];
+                            var right2=[];
+
+                            left2.push(0);
+                            right2.push(disk_size-1);
+                            
+                            for (var i = 0; i < size; i++) 
+                            {
+                                if (arr1[i] < ctrack)
+                                    left2.push(arr1[i]);
+                                if (arr1[i] > ctrack)
+                                    right2.push(arr1[i]);
+                            }
+
+                            left2.sort(function(a, b){return a - b});
+                            right2.sort(function(a, b){return a - b});
+                            console.log("left2->",left2);
+                            console.log("right2->",right2);
+      
+                            var cur_track2;
+                            var seek_sequence2 = Array();
+                            
+                            for (var i = left2.length-1; i >= 0; i--) 
+                                    {
+                                        cur_track2 = left2[i];
+ 
+                                        // appending current track to seek sequence
+                                        seek_sequence2.push(cur_track2);
+                                    }
+                            for (var i = right2.length-1; i >= 0; i--) 
+                                    {   
+                                        cur_track2 = right2[i];
+            
+                                        // appending current track to seek sequence
+                                        seek_sequence2.push(cur_track2);
+                                    }
+                            seek_sequence2.unshift(ctrack);
+                            
+                            var seek4=0;
+
+                            for(i=1;i<seek_sequence2.length;i++)
+                            {
+                                seek4=seek4+Math.abs(seek_sequence2[i]-seek_sequence2[i-1]);
+                            }
+                            
+
+                            //C-SCAN-right
+                            var cur_track3;
+                            var seek_sequence3 = Array();
+                            
+                            for (var i = 0; i < right2.length; i++) 
+                                    {   
+                                        cur_track3 = right2[i];
+            
+                                        // appending current track to seek sequence
+                                        seek_sequence3.push(cur_track3);
+                                    }
+                            for (var i = 0; i < left2.length; i++) 
+                                    {
+                                        cur_track3 = left2[i];
+ 
+                                        // appending current track to seek sequence
+                                        seek_sequence3.push(cur_track3);
+                                    }
+                            
+                            seek_sequence3.unshift(ctrack);
+                            var seek5=0;
+
+                            for(i=1;i<seek_sequence3.length;i++)
+                            {
+                                seek5=seek5+Math.abs(seek_sequence3[i]-seek_sequence3[i-1]);
+                            }
+
+                            //LOOK-left
+                            var left3=[];
+                            var right3=[];
+
+                            for (var i = 0; i < size; i++) 
+                            {
+                                if (arr1[i] < ctrack)
+                                    left3.push(arr1[i]);
+                                if (arr1[i] > ctrack)
+                                    right3.push(arr1[i]);
+                            }
+
+                            left3.sort(function(a, b){return a - b});
+                            right3.sort(function(a, b){return a - b});
+                            console.log("left3->",left3);
+                            console.log("right3->",right3);
+      
+                            var cur_track4;
+                            var seek_sequence4 = Array();
+
+                            for (var i = left3.length - 1; i >= 0; i--) 
+                                    {
+                                        cur_track4 = left3[i];
+ 
+                                        // appending current track to seek sequence
+                                        seek_sequence4.push(cur_track4);
+                                    }
+                            for (var i = 0; i < right3.length; i++) 
+                                    {   
+                                        cur_track4 = right3[i];
+            
+                                        // appending current track to seek sequence
+                                        seek_sequence4.push(cur_track4);
+                                    }
+                            seek_sequence4.unshift(ctrack);
+
+                            var seek6=0;
+
+                            for(i=1;i<seek_sequence4.length;i++)
+                            {
+                                seek6=seek6+Math.abs(seek_sequence4[i]-seek_sequence4[i-1]);
+                            }
+
+                            //LOOK-right
+                            var cur_track5;
+                            var seek_sequence5 = Array();
+
+                            for (var i = 0; i < right3.length; i++) 
+                                    {   
+                                        cur_track5 = right3[i];
+            
+                                        // appending current track to seek sequence
+                                        seek_sequence5.push(cur_track5);
+                                    }
+                            for (var i = left3.length - 1; i >= 0; i--) 
+                                    {
+                                        cur_track5 = left3[i];
+ 
+                                        // appending current track to seek sequence
+                                        seek_sequence5.push(cur_track5);
+                                    }
+                            
+                            seek_sequence5.unshift(ctrack);
+
+                            var seek7=0;
+
+                            for(i=1;i<seek_sequence5.length;i++)
+                            {
+                                seek7=seek7+Math.abs(seek_sequence5[i]-seek_sequence5[i-1]);
+                            }
+
+                            //C-LOOK-left
+                            
+                            var cur_track6;
+                            var seek_sequence6 = Array();
+
+                            for (var i = left3.length-1; i >=0; i--) 
+                                    {
+                                        cur_track6 = left3[i];
+ 
+                                        // appending current track to seek sequence
+                                        seek_sequence6.push(cur_track6);
+                                    }
+                                for (var i = right3.length-1; i >=0; i--) 
+                                    {   
+                                        cur_track6 = right3[i];
+            
+                                        // appending current track to seek sequence
+                                        seek_sequence6.push(cur_track6);
+                                    }
+                            
+                            seek_sequence6.unshift(ctrack);
+
+                            var seek8=0;
+
+                            for(i=1;i<seek_sequence6.length;i++)
+                            {
+                                seek8=seek8+Math.abs(seek_sequence6[i]-seek_sequence6[i-1]);
+                            }
+
+                            //C-LOOK-right
+
+                            var cur_track7;
+                            var seek_sequence7 = Array();
+
+                            for (var i = 0; i < right3.length; i++) 
+                                    {   
+                                        cur_track7 = right3[i];
+            
+                                        // appending current track to seek sequence
+                                        seek_sequence7.push(cur_track7);
+                                    }
+                            for (var i = 0; i < left3.length; i++) 
+                                    {
+                                        cur_track7 = left3[i];
+ 
+                                        // appending current track to seek sequence
+                                        seek_sequence7.push(cur_track7);
+                                    }
+                            seek_sequence7.unshift(ctrack);
+
+                            var seek9=0;
+
+                            for(i=1;i<seek_sequence7.length;i++)
+                            {
+                                seek9=seek9+Math.abs(seek_sequence7[i]-seek_sequence7[i-1]);
+                            }
+                            
+
+                            //graph
+                            var chart = new CanvasJS.Chart("chartContainer", {
+                            animationEnabled: true,
+                            exportEnabled: true,
+                            theme: "dark2", 
+                            title:{
+                                text: "Comparison of Seek Time"
+                            },
+                            axisX:{
+                                title: "Algorithms"    
+      	                        },
+  	                        axisY:{ 
+                                title: "Seek Time"
+                                },
+                            data: [{
+                                type: "column", 
+                                indexLabel: "{y}", 
+                                indexLabelFontColor: "#bdbdbd",
+                                indexLabelFontSize: 10,
+                                indexLabelPlacement: "outside",
+                                dataPoints: [
+                                    {  label: "FCFS", y: seek },
+                                    {  label: "SSTF", y: seek1 },
+                                    {  label: "SCAN(left)", y: seek2 },
+                                    {  label: "SCAN(right)", y: seek3 },
+                                    {  label: "C-SCAN(left)", y: seek4 },
+                                    {  label: "C-SCAN(right)", y: seek5 },
+                                    {  label: "LOOK(left)", y: seek6 },
+                                    {  label: "LOOK(right)", y: seek7 },
+                                    {  label: "C-LOOK(left)", y: seek8 },
+                                    {  label: "C-LOOK(right)", y: seek9 }
+                                ]
+                            }]
+                        });
+                        chart.render();
+                        
+                        }
+                        var subButton2 = document.getElementById('show');
+                        subButton2.addEventListener('click', graph, false); 
+                        </script>
+                </div>
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                
+                </section>
+                
+            </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

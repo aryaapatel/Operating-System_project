@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Disc Scheduling Algorithms</title>
+        <link rel = "icon" href = "image/color-circle.png" type = "image/x-icon">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="DSA_css/a.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        
+    </head>
+    <body>
+        
+                <nav class="navbar navbar-expand-lg navbar-light fixed-top py-1" id="mainNav">
+                    <div class="container">
+                
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            <div class="collapse navbar-collapse" id="navbarResponsive">
+                                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                                    <li class="nav-item"><a class="nav-link" href="DSA_Index.html#portfolio">Algorithms</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="DSA_LOOK.html">Visualization</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                </nav>
+                <br>
+                <br>
+                <br>
+        <div class=first>
+          <h1>LOOK  Algorithm</h1>
+        </div>
+        <br>
+        <div class="second">
+            <p>LOOK is the advanced version of SCAN (elevator) disk scheduling algorithm which gives slightly better seek time than any other algorithm in the hierarchy (FCFS->SRTF->SCAN->C-SCAN->LOOK). The LOOK algorithm services request similarly as SCAN algorithm meanwhile it also “looks” ahead as if there are more tracks that are needed to be serviced in the same direction. If there are no pending requests in the moving direction the head reverses the direction and start servicing requests in the opposite direction.
+                The main reason behind the better performance of LOOK algorithm in comparison to SCAN is because in this algorithm the head is not allowed to move till the end of the disk.</p>
+        </div>
+        <div class="third">
+           <h3><u>Advantages</u></h3>
+           <ul>
+               <li>It does not causes the head to move till the ends of the disk when there are no requests to be serviced.</li>
+               <li>It provides better performance as compared to SCAN Algorithm.</li>
+               <li>It does not lead to starvation.</li>
+               <li>It provides low variance in response time and waiting time.</li>
+           </ul>
+           <br>
+
+           <h3><u>Disadvantages</u></h3>
+           <ul>
+               <li>There is an overhead of finding the end requests.</li>
+               <li>It causes long waiting time for the cylinders just visited by the head</li>
+           </ul>
+
+        </div>
+            
+    </body>
+</html>

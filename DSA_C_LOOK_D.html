@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Disc Scheduling Algorithms</title>
+        <link rel = "icon" href = "image/color-circle.png" type = "image/x-icon">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="DSA_css/a.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        
+    </head>
+    <body>
+        
+                <nav class="navbar navbar-expand-lg navbar-light fixed-top py-1" id="mainNav">
+                    <div class="container">
+                
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            <div class="collapse navbar-collapse" id="navbarResponsive">
+                                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                                    <li class="nav-item"><a class="nav-link" href="DSA_Index.html#portfolio">Algorithms</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="DSA_C_LOOK.html">Visualization</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                </nav>
+                <br>
+                <br>
+                <br>
+        <div class=first>
+          <h1>C-LOOK&nbsp;Algorithm</h1>
+        </div>
+        <br>
+        <div class="second">
+            <p>C-LOOK is an enhanced version of both SCAN as well as LOOK disk scheduling algorithms. This algorithm also uses the idea of wrapping the tracks as a circular cylinder as C-SCAN algorithm but the seek time is better than C-SCAN algorithm. We know that C-SCAN is used to avoid starvation and services all the requests more uniformly, the same goes for C-LOOK. 
+                In this algorithm, the head services requests only in one direction(either left or right) until all the requests in this direction are not serviced and then jumps back to the farthest request on the other direction and service the remaining requests which gives a better uniform servicing as well as avoids wasting seek time for going till the end of the disk.</p>
+        </div>
+        <div class="third">
+           <h3><u>Advantages</u></h3>
+           <ul>
+               <li>It does not causes the head to move till the ends of the disk when there are no requests to be serviced.</li>
+               <li>It reduces the waiting time for the cylinders just visited by the head.</li>
+               <li>It provides better performance as compared to LOOK Algorithm.</li>
+               <li>It does not lead to starvation.</li>
+               <li>It provides low variance in response time and waiting time.</li>
+               
+           </ul>
+           <br>
+
+           <h3><u>Disadvantages</u></h3>
+           <ul>
+            <li>There is an overhead of finding the end requests.</li>
+           
+           </ul>
+
+        </div>
+            
+    </body>
+</html>

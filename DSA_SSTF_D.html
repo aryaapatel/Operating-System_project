@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Disc Scheduling Algorithms</title>
+        <link rel = "icon" href = "image/color-circle.png" type = "image/x-icon">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="DSA_css/a.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        
+    </head>
+    <body>
+        
+                <nav class="navbar navbar-expand-lg navbar-light fixed-top py-1" id="mainNav">
+                    <div class="container">
+                
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            <div class="collapse navbar-collapse" id="navbarResponsive">
+                                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                                    <li class="nav-item"><a class="nav-link" href="DSA_Index.html#portfolio">Algorithms</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="DSA_SSTF.html">Visualization</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                </nav>
+                <br>
+                <br>
+                <br>
+        <div class=first>
+          <h1>Shortest-Seek-Time-First</h1>
+        </div>
+        <br>
+        <div class="second">
+            <p> SSTF is another type of scheduling algorithm. In this type of disk scheduling, the job which has less seek time will be executed first. So, in SSTF (shortest seek time first) scheduling, we have to calculate the seek time first. and after calculating the seek time, each request will be served on the basis of seek time. The request which is close to the disk arm will be first executed. There are some drawbacks in FCFS. To overcome the limitations that arise in the FCFS. SSTF scheduling is implemented.</p>
+        </div>
+        <div class="third">
+           <h3><u>Advantages</u></h3>
+           <ul>
+               <li>It reduces the total seek time as compared to FCFS.</li>
+               <li>It provides increased throughput.</li>
+               <li>It provides less average response time and waiting time.</li>
+               
+           </ul>
+           <br>
+
+           <h3><u>Disadvantages</u></h3>
+           <ul>
+           <li>There is an overhead of finding out the closest request.</li>
+           <li>The requests which are far from the head might starve for the CPU.</li>
+           <li>It provides high variance in response time and waiting time.</li>
+           <li>Switching the direction of head frequently slows down the algorithm.</li>
+           </ul>
+
+        </div>
+            
+    </body>
+</html>
